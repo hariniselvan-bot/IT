@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly contact</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        screens: {
+          'xl2': '1139px' // custom breakpoint
+        }
+      }
+    }
+  }
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    /* ---------- Global custom styles ---------- */
+    :root {
+      --accent: #06b6d4; /* cyan-400 */
+      --muted: #9ca3af;
+      --card: #0f1724; /* dark card */
+    }
+    /* ------------------------------ */
+/*        BLACK THEME HEADER      */
+/* ------------------------------ */
+
+.header {
+  background: #000000 !important;      /* Pure black */
+  color: white !important;
+  box-shadow: 0 2px 12px rgba(0, 255, 255, 0.15);
+}
+
+.header a {
+  color: #ffffff !important;
+}
+
+/* NAV LINKS (Desktop) */
+nav .nav-link {
+  color: #e5e5e5 !important;
+  transition: .25s ease;
+}
+
+nav .nav-link:hover {
+  color: #00e6e6 !important;
+  text-shadow: 0 0 8px #00e6e6;
+}
+
+/* ACTIVE PAGE LINK */
+.active {
+  color: #00e6e6 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px #00e6e6;
+}
+
+/* DROPDOWN MENU */
+nav .group:hover div {
+  background: #0f0f0f !important;
+  border: 1px solid #1f1f1f;
+}
+
+nav .group a:hover {
+  background: #1a1a1a !important;
+}
+
+/* LOGIN BUTTON */
+nav a.bg-blue-600 {
+  background: #00cccc !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: 600;
+  transition: .3s ease;
+}
+
+nav a.bg-blue-600:hover {
+  background: #00a3a3 !important;
+  
+  box-shadow: 0 0 12px #ffffff;
+}
+
+/* ------------------------------ */
+/*            MOBILE MENU         */
+/* ------------------------------ */
+
+#mobileMenu {
+  background: #000000 !important;
+  color: white !important;
+  border-color: #111 !important;
+}
+
+#mobileMenu a {
+  color: #e5e5e5 !important;
+}
+
+#mobileMenu a:hover {
+  color: #00e6e6 !important;
+}
+
+/* Mobile Login */
+#mobileMenu .text-blue-600 {
+  color: #00cccc !important;
+}
+
+/* Hamburger Icon */
+#hamburgerBtn i {
+  color: white !important;
+}
+
+    /* Smooth entrance animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .9s cubic-bezier(.2,.9,.2,1) both; }
+
+    @keyframes fadeScale {
+      from { opacity: 0; transform: translateY(24px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fade-scale { animation: fadeScale 1s ease both; }
+
+    /* Subtle float on cards */
+    .card-hover { transition: transform .35s ease, box-shadow .35s ease; }
+    .card-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 18px 40px rgba(2,6,23,.6); }
+
+    /* Desktop dropdown style */
+    .dropdown-panel { min-width: 11rem; }
+
+    /* Hero overlay & text shadow */
+    .hero-overlay { background: linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.75)); }
+    .glow { text-shadow: 0 6px 30px rgba(6,182,212,0.08); }
+
+    /* Responsive tweaks */
+    @media (min-width:768px) {
+      .nav-center { left: 50%; transform: translateX(-50%); }
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus { outline: 3px solid rgba(6,182,212,0.18); outline-offset: 2px; }
+
+    /* small utils */
+    .muted { color: var(--muted); }
+
+    .what-we-do {
+    padding: 60px 20px;
+    text-align: center;
+    background: #050505; /* or remove if you want full black page */
+}
+
+.what-we-do h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #d8d8e1;
+    margin-bottom: 15px;
+}
+
+.what-we-do p {
+    color: #9eb5c7;
+    font-size: 18px;
+}
+body {
+  padding-top: 100px; /* adjust height based on your header size */
+}
+.active-link {
+    color: #22d3ee !important; /* cyan-400 */
+    font-weight: bold !important;
+  }
+
+  </style>
+</head>
+<body class="font-inter antialiased bg-black text-white">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="stackly.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="services.html" >Services</a>
+      <a href="aboutus.html">Dashboard</a>
+      <a href="contact.html"class="nav-link"
+   style="color:#2563eb; font-weight:700;">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+    </div>
+  </nav>
+<style>
+  .active-link {
+    color: #22d3ee !important;  /* cyan-400 */
+    font-weight: 700 !important;
+  }
+  nav a.nav-link {
+    color: white !important; /* force default desktop font */
+  }
+  #mobileMenu a {
+    color: white !important; /* force default mobile font */
+  }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+<style>
+    body {
+        background: #050a14;
+        font-family: Arial;
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+    
+    /* Custom breakpoint: show desktop menu only at ≥1117px */
+@media (min-width: 1117px) {
+  .xl2\:flex {
+    display: flex !important;
+  }
+  .xl2\:hidden {
+    display: none !important;
+  }
+}
+
+    /* Wrapper */
+    .contact-container {
+        max-width: 900px;
+        margin: 30px auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+
+    .page-sub {
+        color: #aaa;
+        margin-bottom: 30px;
+    }
+
+    /* Cards Grid */
+    .contact-grid {
+        display: grid;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .contact-card {
+        background: #0d1526;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #00d4ff33;
+    }
+
+    .icon {
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+
+    /* Form */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        background: #0d1526;
+        border: 2px solid #1c2942;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+
+    /* Error Text */
+    .error {
+        font-size: 14px;
+        color: #ff9800;
+        text-align: left;
+        margin-left: 5px;
+        margin-top: -8px;
+    }
+
+    /* Button */
+    .send-btn {
+        background: #00d4ff;
+        color: black;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .send-btn:hover {
+        background: #00a4cc;
+    }
+
+    /* MOBILE FIX */
+    @media (max-width: 600px) {
+        .contact-container {
+            width: 90%;
+            margin-top: 10px;
+        }
+
+        .contact-card {
+            padding: 18px;
+        }
+
+        .send-btn {
+            font-size: 16px;
+            padding: 13px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contact-container">
+
+    <h2 class="page-title">Contact Us</h2>
+    <p class="page-sub">We'd love to hear from you</p>
+
+    <!-- Contact Boxes -->
+    <div class="contact-grid">
+
+        <div class="contact-card">
+            <div class="icon">📍</div>
+            <h3>Office Address</h3>
+            <p>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil,
+Salem, Tamil Nadu 636008</p>
+        </div>
+
+        <div class="contact-card">
+            <div class="icon">📞</div>
+            <h3>Phone</h3>
+            <p>+91 93459 81883</p>
+        </div>
+
+        <div class="contact-card">
+            <div class="icon">✉️</div>
+            <h3>Email</h3>
+            <p>info@thestackly.com</p>
+        </div>
+
+    </div>
+
+    <!-- Contact Form -->
+    <form id="contactForm" class="contact-form">
+
+        <input type="text" id="name" placeholder="Your Name">
+        <span class="error" id="nameError"></span>
+
+        <input type="email" id="email" placeholder="Your Email">
+        <span class="error" id="emailError"></span>
+
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <span class="error" id="messageError"></span>
+
+        <button type="submit" class="send-btn">Send Now</button>
+    </form>
+
+</div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    let valid = true;
+
+    // Reset errors
+    document.querySelectorAll(".error").forEach(e => e.innerHTML = "");
+
+    if (name === "") {
+        document.getElementById("nameError").innerHTML = "⚠ Please enter your name";
+        valid = false;
+    }
+
+    if (email === "") {
+        document.getElementById("emailError").innerHTML = "⚠ Please enter your email";
+        valid = false;
+    }
+
+    if (message === "") {
+        document.getElementById("messageError").innerHTML = "⚠ Please enter your message";
+        valid = false;
+    }
+
+    if (valid) {
+        window.location.href = "404.html";
+    }
+});
+</script>
+
+</body>
+</html>
+
+ <footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-4 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="stackly.webp" class="w-40 mx-auto md:mx-0 mb-3" />
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER (MAIN LINKS) -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="about.html" class="hover:text-white">About us</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="insights.html" class="hover:text-white">Insights</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- SOCIALS -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Social</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+      <!-- MAP -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Our location</h4>
+
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <iframe 
+            width="100%" 
+            height="200" 
+            style="border:0;" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=MMR+Complex,+Salem,+Tamil+Nadu+636008&output=embed">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+  function toggleMobileDrop() {
+  const drop = document.getElementById("mobileHomeDrop");
+  drop.classList.toggle("hidden");
+}
+
+</script>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<style>
+  .active-link {
+    color: #22d3ee !important;   /* cyan-400 */
+    font-weight: 700 !important; /* bold */
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop();
+    const links = document.querySelectorAll(".nav-link");
+
+    links.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active-link");
+      }
+    });
+  });
+</script>

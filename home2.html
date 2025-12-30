@@ -1,0 +1,1367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="stackly.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="home2.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home.html">Home 1</a>
+        </div>
+      </div>
+      <a href="about1.html">About</a>
+      <a href="services1.html" >Services</a>
+      <a href="FAQ.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home.html">Home 1</a>
+  </div>
+
+  <a href="about1.html">About</a>
+  <a href="services1.html">Services</a>
+  <a href="FAQ.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+/* VIDEO */
+.hero video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+/* DARK OVERLAY */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.85) 0%,
+    rgba(0,0,0,.55) 45%,
+    rgba(0,0,0,.25) 100%
+  );
+  z-index:1;
+}
+
+/* CONTENT */
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:0 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+/* LEFT */
+.hero-left{
+  max-width:720px;
+}
+
+.hero-left h1{
+  font-size:clamp(36px,5vw,72px);
+  font-weight:800;
+  line-height:1.1;
+}
+
+/* ANIMATED WORD */
+.word{
+  display:inline-block;
+  color:#22d3ee;
+  animation:fadeSlide .6s ease;
+}
+
+/* RIGHT */
+.hero-right{
+  text-align:right;
+  font-size:18px;
+  opacity:.85;
+  max-width:340px;
+}
+
+/* ANIMATION */
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-content{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:40px;
+  }
+  .hero-right{
+    text-align:left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline>
+    <source src="hghp2.mp4" type="video/mp4">
+  </video>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <!-- LEFT TEXT -->
+    <div class="hero-left">
+      <h1>
+        RIGHT SIZED<br>
+        <span class="word" id="changingWord">TECHNOLOGY</span><br>
+        PARTNER OF CHOICE
+      </h1>
+    </div>
+
+    <!-- RIGHT TEXT -->
+    <div class="hero-right">
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+/* WORD LOOP */
+constwords = [
+  "TECHNOLOGY",
+  "DIGITAL",
+  "IT SOLUTIONS",
+  "SOFTWARE",
+  "INNOVATION"
+];
+
+let index = 0;
+const wordEl = document.getElementById("changingWord");
+
+setInterval(() => {
+  index = (index + 1) % words.length;
+
+  wordEl.style.animation = "none";
+  void wordEl.offsetWidth; // restart animation
+  wordEl.style.animation = "fadeSlide .6s ease";
+
+  wordEl.textContent = words[index];
+}, 2200);
+</script>
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#fdf6f6;
+  color:#fff;
+}
+
+/* ================= SECTION ================= */
+.solutions{
+  position:relative;
+  padding:100px 8%;
+  background:
+    linear-gradient(120deg, rgba(0,0,0,.85), rgba(0,0,0,.6)),
+    url("bg.jpg") center/cover no-repeat;
+}
+
+/* HEADER TEXT */
+.solutions small{
+  opacity:.7;
+  letter-spacing:2px;
+}
+
+.solutions h2{
+  font-size:clamp(36px,5vw,60px);
+  font-weight:700;
+  margin:14px 0 50px;
+}
+
+/* GRID */
+.solution-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:30px;
+}
+
+/* CARD */
+.solution-card{
+  background:#fff;
+  color:#000;
+  padding:40px 30px;
+  border-radius:22px;
+  text-align:center;
+  transition:.35s ease;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+/* ICON */
+.solution-card i{
+  font-size:46px;
+  color:#3b82f6;
+  margin-bottom:20px;
+}
+
+/* TITLE */
+.solution-card h3{
+  font-size:20px;
+  font-weight:600;
+}
+
+/* HOVER GLOW */
+.solution-card:hover{
+  transform:translateY(-10px);
+  box-shadow:
+    0 0 30px rgba(59,130,246,.35),
+    0 30px 60px rgba(0,0,0,.35);
+}
+
+/* CENTER HIGHLIGHT CARD */
+.solution-card.highlight{
+  background:linear-gradient(135deg,#e0f2ff,#ffffff);
+  box-shadow:
+    0 0 40px rgba(59,130,246,.6),
+    0 30px 60px rgba(0,0,0,.4);
+  transform:scale(1.05);
+}
+
+.solution-card.highlight i{
+  color:#0ea5e9;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .solution-card.highlight{
+    transform:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="solutions">
+
+  <small>* SOLUTIONS</small>
+  <h2>Drive Competitive<br>Differentiation.</h2>
+
+  <div class="solution-grid">
+
+    <div class="solution-card">
+      <i class="fa-solid fa-infinity"></i>
+      <h3>AMURAA</h3>
+    </div>
+
+    <div class="solution-card">
+      <i class="fa-solid fa-robot"></i>
+      <h3>RPA Solutions</h3>
+    </div>
+
+    <div class="solution-card">
+      <i class="fa-solid fa-rotate"></i>
+      <h3>Factory Process Automation</h3>
+    </div>
+
+    <div class="solution-card">
+      <i class="fa-solid fa-hand-holding-medical"></i>
+      <h3>Healthcare & Tele-medicine</h3>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#b43b08;
+}
+
+/* ===== SECTION ===== */
+.spotlight{
+  padding:80px 5%;
+  text-align:center;
+}
+
+.spotlight h2{
+  font-size:48px;
+  margin-bottom:50px;
+}
+
+/* ===== SLIDER ===== */
+.slider-wrap{
+  overflow:hidden;
+  position:relative;
+}
+
+.slider{
+  display:flex;
+  gap:30px;
+  animation:scroll 22s linear infinite;
+}
+
+/* ===== CARD ===== */
+.card{
+  min-width:360px;
+  height:420px;
+  border-radius:12px;
+  color:#fff;
+  padding:28px;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.4);
+}
+
+/* DARK OVERLAY */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  border-radius:12px;
+}
+
+.card-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+/* TAG */
+.tag{
+  color:#facc15;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* TITLE */
+.card h3{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+/* TEXT */
+.card p{
+  font-size:14px;
+  opacity:.85;
+}
+
+/* CTA */
+.card a{
+  margin-top:18px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* CENTER CARD SCALE EFFECT */
+.card.center{
+  transform:scale(1.06);
+}
+
+/* ===== LOOP ANIMATION ===== */
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .card{
+    min-width:300px;
+    height:380px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="spotlight">
+  <h2>Spotlight</h2>
+
+  <div class="slider-wrap">
+    <div class="slider">
+
+      <!-- CARD 1 -->
+      <div class="card" style="background-image:url('ser1.webp')">
+        <div class="card-content">
+          <span class="tag">* BROCHURE</span>
+          <h3>YASH Intelligent Automation Services</h3>
+          <p>Enables the philosophy of “Do More with Less” while improving enterprise efficiency.</p>
+          <a href="#">Read More →</a>
+        </div>
+      </div>
+
+      <!-- CARD 2 (CENTER) -->
+      <div class="card center" style="background-image:url('service.webp')">
+        <div class="card-content">
+          <span class="tag">* WEBINAR</span>
+          <h3>How to Leverage MS Excel Automation in SAP</h3>
+          <p>Discover how Excel-based automation boosts SAP financial efficiency.</p>
+          <a href="contact.html">Watch Now →</a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card" style="background-image:url('pg3.webp')">
+        <div class="card-content">
+          <span class="tag">* WEBINAR</span>
+          <h3>Cost-Efficient Integrated A/P Automation</h3>
+          <p>Digitize paper documents and enable faster automated workflows.</p>
+          <a href="contact.html">Watch Now →</a>
+        </div>
+      </div>
+
+      <!-- DUPLICATE FOR SMOOTH LOOP -->
+      <div class="card" style="background-image:url('ser1.webp')">
+        <div class="card-content">
+          <span class="tag">* BROCHURE</span>
+          <h3>YASH Intelligent Automation Services</h3>
+          <p>Improving enterprise operational efficiency.</p>
+          <a href="contact.html">Read More →</a>
+        </div>
+      </div>
+
+      <div class="card center" style="background-image:url('service.webp')">
+        <div class="card-content">
+          <span class="tag">* WEBINAR</span>
+          <h3>Excel Automation in SAP</h3>
+          <p>Increase efficiency with spreadsheet automation.</p>
+          <a href="contact.html">Watch Now →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#050816;
+  color:#fff;
+}
+
+/* ===== SECTION ===== */
+.services-section{
+  position:relative;
+  padding:100px 6%;
+  overflow:hidden;
+}
+
+/* ===== ANIMATED LINE BG ===== */
+.services-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at left, rgba(0,255,255,.12), transparent 60%),
+    radial-gradient(circle at right, rgba(120,0,255,.12), transparent 60%);
+  z-index:0;
+}
+
+.lines{
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(
+      120deg,
+      rgba(255,255,255,.04) 0px,
+      rgba(255,255,255,.04) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  animation:flow 25s linear infinite;
+  z-index:0;
+}
+
+@keyframes flow{
+  from{background-position:0 0}
+  to{background-position:1000px 0}
+}
+
+/* ===== TITLE ===== */
+.services-section h2{
+  position:relative;
+  z-index:1;
+  font-size:42px;
+  margin-bottom:60px;
+}
+
+/* ===== GRID ===== */
+.services-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:30px;
+}
+
+/* ===== CARD ===== */
+.service-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:14px;
+  padding:34px 30px;
+  backdrop-filter:blur(18px);
+  transition:.4s ease;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+.service-card:hover{
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:
+    0 0 30px rgba(0,255,255,.25),
+    0 40px 80px rgba(0,0,0,.9);
+}
+
+/* ===== CARD TEXT ===== */
+.service-card h3{
+  font-size:26px;
+  margin-bottom:14px;
+}
+
+.service-card p{
+  font-size:15px;
+  line-height:1.6;
+  opacity:.85;
+}
+
+/* ===== LINK ===== */
+.service-card a{
+  margin-top:24px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:#fff;
+  font-size:15px;
+}
+
+.circle{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.3s;
+}
+
+.service-card:hover .circle{
+  background:#00e5ff;
+  color:#000;
+  border-color:#00e5ff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .services-section h2{
+    font-size:32px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="services-section">
+
+  <div class="lines"></div>
+
+  <h2>Related Service Offerings</h2>
+
+  <div class="services-grid">
+
+    <!-- CARD 1 -->
+    <div class="service-card">
+      <h3>SAP on Cloud</h3>
+      <p>
+        Modernize the SAP landscape to open a new world of opportunities.
+      </p>
+      <a href="contact.html">
+        <span class="circle">→</span>
+        Learn more
+      </a>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="service-card">
+      <h3>Cloud Transformation Services</h3>
+      <p>
+        Taking your business to the cloud with minimum disruptions and maximum ROI.
+      </p>
+      <a href="contact.html">
+        <span class="circle">→</span>
+        Learn more
+      </a>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="service-card">
+      <h3>Microsoft Dynamics 365</h3>
+      <p>
+        Unify your customers and business with Microsoft Dynamics 365.
+      </p>
+      <a href="contact.html">
+        <span class="circle">→</span>
+        Learn more
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000000;
+  color:#ffffff;
+}
+
+/* ===== SECTION ===== */
+.compare-section{
+  padding:90px 6%;
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:60px;
+  align-items:center;
+}
+
+/* ===== LEFT CONTENT ===== */
+.compare-left h2{
+  font-size:44px;
+  margin-bottom:18px;
+}
+
+.compare-left h2 span{
+  color:#5b5ef2;
+}
+
+.compare-left p{
+  font-size:17px;
+  line-height:1.7;
+  color:#555;
+  max-width:520px;
+}
+
+.compare-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:30px;
+  padding:14px 28px;
+  background:#5b5ef2;
+  color:#fff;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:600;
+  box-shadow:0 10px 30px rgba(91,94,242,.35);
+}
+
+/* ===== TABLE CARD ===== */
+.compare-table{
+  background:#3f3a3a;
+  border-radius:16px;
+  box-shadow:0 30px 60px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+
+/* ===== TABLE ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead{
+  background:#454648;
+}
+
+th, td{
+  padding:16px 20px;
+  text-align:left;
+  font-size:15px;
+}
+
+th{
+  font-weight:600;
+  color:#666;
+}
+
+tbody tr{
+  border-top:1px solid #eee;
+}
+
+tbody tr:nth-child(even){
+  background:#848ca9;
+}
+
+/* ===== ICONS ===== */
+.tick{
+  color:#16a34a;
+  font-size:18px;
+}
+
+.cross{
+  color:#dc2626;
+  font-size:18px;
+}
+
+.info{
+  color:#888;
+  margin-left:6px;
+  font-size:13px;
+}
+
+/* ===== CENTER ALIGN ===== */
+td:nth-child(2),
+td:nth-child(3),
+th:nth-child(2),
+th:nth-child(3){
+  text-align:center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:992px){
+  .compare-section{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="compare-section">
+
+  <!-- LEFT -->
+  <div class="compare-left">
+    <h2>Why Choose <span>STACKLY</span>?</h2>
+
+    <p>
+      STACKLY offers the most comprehensive monitoring solution while maintaining
+      the highest ethical standards. Compare our features with others to see why
+      we’re the top choice for businesses worldwide.
+    </p>
+
+    <a href="contact.html" class="compare-btn">
+      Start 14 Day Free Trial
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="compare-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Features</th>
+          <th>Stackly</th>
+          <th>Others</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>📶 Offline Tracking with Auto Sync <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+
+        <tr>
+          <td>🛡 Ethical Monitoring <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+
+        <tr>
+          <td>🖥 Real-time Screenshots & Screencast <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+
+        <tr>
+          <td>🕵 General & Stealth Mode <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+        </tr>
+
+        <tr>
+          <td>📊 Employee Access to Self Reports <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+
+        <tr>
+          <td>💻 Cross-Platform Compatibility <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+        </tr>
+
+        <tr>
+          <td>💰 Transparent Pricing <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+
+        <tr>
+          <td>📜 GDPR Compliant <i class="fa-solid fa-circle-info info"></i></td>
+          <td><i class="fa-solid fa-check tick"></i></td>
+          <td><i class="fa-solid fa-xmark cross"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+</body>
+
+<footer class="site-footer">
+
+  <div class="footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <img src="stackly.png" alt="Stackly Logo" class="footer-logo">
+      <p>Get your business engaged</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- MAIN LINKS -->
+    <div class="footer-links">
+      <h4>Main</h4>
+      <a href="home2.html">Home 2</a>
+      <a href="about1.html">About</a>
+      <a href="services1.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SOCIAL -->
+    <div class="footer-social">
+      <h4>Social</h4>
+      <a href="404.html"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+      <a href="404.html"><i class="fa-brands fa-twitter"></i> Twitter</a>
+      <a href="404.html"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+      <a href="404.html"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    © Stackly – 2025. All rights reserved.
+  </div>
+
+</footer>
+<style>
+  .site-footer{
+  background:radial-gradient(circle at top, #1a0028, #0b0014 70%);
+  color:#d1d5db;
+  padding:70px 6% 30px;
+  font-family:'Poppins', sans-serif;
+}
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:1.4fr auto 1fr auto 1fr;
+  align-items:start;
+  gap:40px;
+}
+
+.footer-logo{
+  height:42px;
+  margin-bottom:16px;
+}
+
+.footer-brand p{
+  max-width:260px;
+  font-size:15px;
+  opacity:.9;
+}
+
+.footer-links h4,
+.footer-social h4{
+  font-size:20px;
+  margin-bottom:18px;
+  color:#fff;
+}
+
+.footer-links a,
+.footer-social a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  color:#cbd5e1;
+  text-decoration:none;
+  font-size:15px;
+  transition:.3s;
+}
+
+.footer-links a:hover,
+.footer-social a:hover{
+  color:#38bdf8;
+}
+
+.footer-social i{
+  width:18px;
+}
+
+/* Vertical divider */
+.divider{
+  width:1px;
+  height:160px;
+  background:linear-gradient(
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+}
+
+/* Bottom line */
+.footer-bottom{
+  text-align:center;
+  margin-top:50px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.15);
+  font-size:14px;
+  color:#9ca3af;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .divider{
+    display:none;
+  }
+
+  .footer-links a,
+  .footer-social a{
+    justify-content:center;
+  }
+}
+
+</style>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loading | Stackly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", monospace;
+}
+
+/* BACKGROUND */
+body{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle at top, #020617, #000);
+  color:#e5e7eb;
+  overflow:hidden;
+}
+
+/* SUBTLE GRID */
+body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+}
+
+/* LOADER CARD */
+.loader{
+  width:90%;
+  max-width:420px;
+  background:rgba(2,6,23,0.9);
+  border:1px solid rgba(56,189,248,0.35);
+  border-radius:14px;
+  padding:40px 30px;
+  box-shadow:0 0 45px rgba(34,211,238,0.25);
+  text-align:center;
+  z-index:1;
+}
+
+/* LOGO */
+.loader img{
+  width:90px;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 14px rgba(56,189,248,0.6));
+}
+
+/* TITLE */
+.loader h1{
+  font-size:22px;
+  letter-spacing:1px;
+  margin-bottom:6px;
+}
+
+/* SUBTEXT */
+.loader p{
+  font-size:14px;
+  color:#94a3b8;
+  margin-bottom:30px;
+}
+
+/* PROGRESS INFO */
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  color:#cbd5f5;
+  margin-bottom:8px;
+}
+
+/* PROGRESS BAR */
+.progress{
+  height:10px;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#22d3ee,#3b82f6);
+  transition:width .25s linear;
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader">
+
+  <!-- LOGO -->
+  <img src="stackly.webp" alt="Stackly Logo">
+
+  <h1>STACKLY SOLUTIONS</h1>
+  <p>Preparing your workspace</p>
+
+  <!-- PROGRESS -->
+  <div class="progress-info">
+    <span>Loading</span>
+    <span id="percent">0%</span>
+  </div>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+</div>
+
+<script>
+let percent = 0;
+const percentText = document.getElementById("percent");
+const bar = document.getElementById("bar");
+
+const loader = setInterval(() => {
+  percent++;
+  percentText.textContent = percent + "%";
+  bar.style.width = percent + "%";
+
+  if(percent >= 100){
+    clearInterval(loader);
+  }
+}, 50); // speed control
+
+/* REDIRECT */
+setTimeout(() => {
+  window.location.href = "home.html";
+}, 5200);
+</script>
+
+<style>
+  
+</style>

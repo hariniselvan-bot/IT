@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly home</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    /* ---------- Global custom styles ---------- */
+    :root {
+      --accent: #06b6d4; /* cyan-400 */
+      --muted: #9ca3af;
+      --card: #0f1724; /* dark card */
+    }
+
+    /* Smooth entrance animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .9s cubic-bezier(.2,.9,.2,1) both; }
+
+    @keyframes fadeScale {
+      from { opacity: 0; transform: translateY(24px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fade-scale { animation: fadeScale 1s ease both; }
+
+    /* Subtle float on cards */
+    .card-hover { transition: transform .35s ease, box-shadow .35s ease; }
+    .card-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 18px 40px rgba(2,6,23,.6); }
+
+    /* Desktop dropdown style */
+    .dropdown-panel { min-width: 11rem; }
+
+    /* Hero overlay & text shadow */
+    .hero-overlay { background: linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.75)); }
+    .glow { text-shadow: 0 6px 30px rgba(6,182,212,0.08); }
+
+    /* Responsive tweaks */
+    @media (min-width:768px) {
+      .nav-center { left: 50%; transform: translateX(-50%); }
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus { outline: 3px solid rgba(6,182,212,0.18); outline-offset: 2px; }
+
+    /* small utils */
+    .muted { color: var(--muted); }
+
+    .what-we-do {
+    padding: 60px 20px;
+    text-align: center;
+    background: #050505; /* or remove if you want full black page */
+}
+
+.what-we-do h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #d8d8e1;
+    margin-bottom: 15px;
+}
+
+.what-we-do p {
+    color: #9eb5c7;
+    font-size: 18px;
+}
+/* Custom breakpoint: show desktop menu only at ≥1117px */
+@media (min-width: 1117px) {
+  .xl2\:flex {
+    display: flex !important;
+  }
+  .xl2\:hidden {
+    display: none !important;
+  }
+}
+.nav-active {
+  color: cyan !important;
+}
+
+
+
+  </style>
+</head>
+<body class="font-inter antialiased bg-black text-white">
+
+ 
+<!-- HEADER -->
+<header class="header fixed top-0 left-0 w-full z-50 bg-black shadow h-20 flex items-center">
+  <div class="max-w-7xl w-full mx-auto px-6 flex items-center justify-between h-full">
+
+    <!-- LOGO -->
+    <a href="index.html" class="flex items-center gap-3">
+  <img src="stackly.webp" class="w-40 h-40 object-contain" alt="Stackly logo">
+</a>
+
+      <!-- DESKTOP MENU (only visible above 1117px) -->
+    <nav class="hidden xl2:flex gap-8 font-semibold items-center text-white">
+      <div class="relative group">
+  <a href="home2.html" class="hover:text-cyan-400 flex items-center gap-1 nav-link">
+    Home 2
+    <i class="fa-solid fa-chevron-down text-xs"></i>
+  </a>
+
+
+        <div class="absolute bg-black shadow-lg rounded-lg hidden group-hover:block 
+             w-36 top-full pt-3 z-50">
+          <a href="index.html" class="block px-4 py-2 hover:bg-gray-800 nav-link">Home 1</a>
+        </div>
+      </div>
+
+      <a href="about1.html" class="nav-link hover:text-cyan-400">About</a>
+      <a href="services1.html"class="nav-link hover:text-cyan-400">Services</a>
+      <a href="FAQ.html"class="nav-link"style="color: #22d3ee !important; font-weight: 700 !important;"> FAQ</a>
+      <a href="contact.html" class="nav-link hover:text-cyan-400">Contact</a>
+
+      <a href="login.html" class="px-5 py-2 bg-cyan-500 text-black rounded-lg hover:bg-cyan-400 nav-link">
+        Login
+      </a>
+    </nav>
+
+    <!-- MOBILE HAMBURGER (visible up to 1117px) -->
+    <button id="hamburgerBtn" class="xl2:hidden p-2 rounded-md">
+      <i class="fa-solid fa-bars text-2xl text-white"></i>
+    </button>
+
+  </div>
+</header>
+
+  
+  <!-- ================= MOBILE MENU ================= -->
+  <nav id="mobileMenu" class="hidden fixed inset-x-0 top-20 z-40 bg-black text-white border-t border-gray-800 shadow-lg">
+    <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold">
+
+      <button onclick="toggleMobileDrop()" class="flex items-center justify-between w-full">
+        <span>Home 2</span>
+        <i class="fa-solid fa-chevron-down text-sm"></i>
+      </button>
+
+      <div id="mobileHomeDrop" class="hidden pl-4">
+        <a href="index.html" class="block py-2 hover:text-cyan-300">Home 1</a>
+      </div>
+
+      <a href="about1.html" class="hover:text-cyan-300">About</a>
+      <a href="services1.html" class="hover:text-cyan-300">Services</a>
+      <a href="FAQ.html" class="hover:text-cyan-300">FAQ</a>
+
+      <!-- ACTIVE CONTACT MOBILE -->
+      <a href="contact.html" class="active-link">Contact</a>
+
+      <a href="login.html" class="text-cyan-300 font-semibold mt-2">Login</a>
+    </div>
+  </nav>
+<main class="pt-32">
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+  function toggleMobileDrop() {
+  const drop = document.getElementById("mobileHomeDrop");
+  drop.classList.toggle("hidden");
+}
+
+</script>
+
+  <!-- ================ FAQ SECTION (REPLACES HERO) ================= -->
+  <section class="flex justify-center px-6 pb-20">
+    <div class="faq-container max-w-3xl w-full text-center">
+
+      <h4 class="text-gray-300 text-lg mb-2">Got Questions?</h4>
+      <h1 class="text-4xl font-extrabold mb-10">FREQUENTLY ASKED QUESTIONS</h1>
+
+      <div class="bg-[#121212] border border-gray-800 rounded-xl overflow-hidden">
+
+        <!-- FAQ ITEM 5 -->
+<div class="border-b border-gray-800">
+  <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center text-lg">
+    <span>Do you offer ongoing support after project completion?</span>
+    <span class="icon text-2xl font-bold">+</span>
+  </button>
+  <div class="faq-answer text-gray-300 text-base leading-relaxed px-6 pb-0 max-h-0 overflow-hidden">
+    Yes. We provide monthly maintenance, security updates, backups, bug fixes,
+    and new feature development depending on your support plan.
+  </div>
+</div>
+
+<!-- FAQ ITEM 6 -->
+<div>
+            <div class="border-b border-gray-800">
+
+  <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center text-lg">
+    <span>Can you integrate AI tools or automation into systems?</span>
+    <span class="icon text-2xl font-bold">+</span>
+  </button>
+  <div class="faq-answer text-gray-300 text-base leading-relaxed px-6 pb-0 max-h-0 overflow-hidden">
+    Absolutely. We build AI-based automation, chatbots, data analysis tools,
+    and integrate third-party AI APIs like OpenAI, Gemini, and custom ML models.
+  </div>
+</div>
+  <!-- FAQ ITEM 2 -->
+        <div class="border-b border-gray-800">
+          <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center text-lg">
+            <span>How long does a development project take?</span>
+            <span class="icon text-2xl font-bold">+</span>
+          </button>
+          <div class="faq-answer text-gray-300 text-base leading-relaxed px-6 pb-0 max-h-0 overflow-hidden">
+            Small projects take 3–8 weeks. Larger systems vary from 2–6 months.
+          </div>
+        </div>
+
+        <!-- FAQ ITEM 3 -->
+        <div class="border-b border-gray-800">
+          <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center text-lg">
+            <span>What pricing models do you use?</span>
+            <span class="icon text-2xl font-bold">+</span>
+          </button>
+          <div class="faq-answer text-gray-300 text-base leading-relaxed px-6 pb-0 max-h-0 overflow-hidden">
+            We offer fixed-price, hourly billing, subscription maintenance,
+            and dedicated full-time developer models.
+          </div>
+        </div>
+
+        <!-- FAQ ITEM 4 -->
+        <div>
+          <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center text-lg">
+            <span>Do you provide UI/UX design?</span>
+            <span class="icon text-2xl font-bold">+</span>
+          </button>
+          <div class="faq-answer text-gray-300 text-base leading-relaxed px-6 pb-0 max-h-0 overflow-hidden">
+            Yes. Our designers create UI kits, wireframes, prototypes,
+            and complete responsive layouts for websites & applications.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+<script>
+  // FAQ Toggle Script
+  document.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector(".icon");
+
+      answer.classList.toggle("open");
+
+      if (answer.classList.contains("open")) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.style.paddingBottom = "24px";
+        icon.textContent = "−";
+      } else {
+        answer.style.maxHeight = "0";
+        answer.style.paddingBottom = "0";
+        icon.textContent = "+";
+      }
+    });
+  });
+</script>
+
+
+<footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="stackly.webp" class="w-40 mx-auto md:mx-0 mb-3" />
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="home2.html" class="hover:text-white">Home 2</a></li>
+          <li><a href="about1.html" class="hover:text-white">About</a></li>
+          <li><a href="services1.html" class="hover:text-white">Services</a></li>
+          <li><a href="FAQ.html" class="hover:text-white">FAQ</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Social</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+</footer>
