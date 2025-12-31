@@ -68,7 +68,7 @@ body{
 }
 
 .nav a{
-  color:#000000;
+  color:#4fda13;
   text-decoration:none;
 }
 .nav a:hover,
@@ -290,6 +290,46 @@ body{
     font-size:36px;
   }
 }
+.dropdown {
+  position: relative;
+}
+
+/* hide checkbox */
+#home-toggle {
+  display: none;
+}
+
+.home-link {
+  cursor: pointer;
+  color: #00e5ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* dropdown hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: black;
+  padding: 12px 20px;
+  border-radius: 18px;
+  min-width: 120px;
+  display: none;
+}
+
+/* show when checkbox checked */
+#home-toggle:checked + .home-link + .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
 </style>
 
 
@@ -301,13 +341,23 @@ body{
       <img src="stackly.webp" alt="Stackly">
     </a>
 
-    <nav class="nav">
-      <div class="dropdown">
-        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="home2.html">Home 2</a>
-        </div>
-      </div>
+ <nav class="nav">
+  <div class="dropdown">
+
+    <!-- hidden checkbox -->
+    <input type="checkbox" id="home-toggle">
+
+    <!-- Home link -->
+    <label for="home-toggle" class="home-link active">
+      Home <i class="fa-solid fa-chevron-down"></i>
+    </label>
+
+    <!-- dropdown -->
+    <div class="dropdown-menu">
+      <a href="home2.html">Home2</a>
+    </div>
+
+  </div>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="aboutus.html">Dashboard</a>
